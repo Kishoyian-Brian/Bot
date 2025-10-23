@@ -14,10 +14,15 @@ async function bootstrap() {
   // Enable graceful shutdown
   app.enableShutdownHooks();
   
+  const port = process.env.PORT ?? 3000;
+  const webhookUrl = process.env.RENDER_EXTERNAL_URL || process.env.WEBHOOK_URL;
+  
   console.log('🤖 Telegram Bot is starting...');
   console.log('✅ Bot token configured');
+  console.log(`🌐 Webhook URL: ${webhookUrl}/webhook`);
+  console.log(`🚀 Server listening on port ${port}`);
   console.log('🚀 Bot is ready to receive messages!');
   
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(port);
 }
 bootstrap();
